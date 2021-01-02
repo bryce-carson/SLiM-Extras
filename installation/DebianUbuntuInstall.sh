@@ -55,6 +55,9 @@ cmake -D BUILD_SLIMGUI=ON ../SLiM && make || printf "Build failed. Please see th
 
 mkdir -p /usr/bin /usr/share/icons/hicolor/scalable/apps/ /usr/share/icons/hicolor/scalable/mimetypes /usr/share/mime/packages /usr/share/applications /usr/share/metainfo/
 install slim eidos SLiMgui /usr/bin
+
+# Confirm success
+if [[ $? == 0 ]]; then echo "Installation was successful. Proceeding with desktop integration.\n"; fi
 	
 mv ../SLiM/QtSLiM/icons/AppIcon64.svg /usr/share/icons/hicolor/scalable/apps/org.messerlab.slimgui
 mv ../SLiM/QtSLiM/icons/DocIcon.svg /usr/share/icons/hicolor/scalable/mimetypes/text-slim.svg
@@ -65,6 +68,3 @@ mv ../SLiM/org.messerlab.slimgui.appdata.xml /usr/share/metainfo/
 update-mime-database -n /usr/share/mime/
 xdg-mime install --mode system /usr/share/mime/packages/org.messerlab.slimgui-mime.xml
 cd ~; rm -Rf /tmp/SLiM/ /tmp/BUILD/ /tmp/SLiM.zip
-
-# Confirm success
-if [[ $? == 0 ]]; then echo "Installation was successful. Proceeding with desktop integration.\n"; fi
